@@ -20,6 +20,7 @@ int main()
 
 //#ifdef SW1
     DigitalInOut bt(BUTTON1);
+
 //#else
 //    bool sw;
 //#endif
@@ -27,12 +28,11 @@ int main()
     while (true)
     {
 
-        if (bt.read() == 1)
-        {
-        led  = !led;
-        }
+       led = bt.read();
+
+
         // led = !led;
-        // ThisThread::sleep_for(BLINKING_RATE);
+        ThisThread::sleep_for(BLINKING_RATE);
         //printf("Hello World!\n");
     }
 }
