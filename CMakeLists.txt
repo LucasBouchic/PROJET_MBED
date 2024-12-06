@@ -18,6 +18,8 @@ add_executable(${APP_TARGET})
 target_sources(${APP_TARGET}
     PRIVATE
         main.cpp
+        capteurs/src/HTU21DF.cpp
+        capteurs/src/AS6212.cpp
 )
 
 target_link_libraries(${APP_TARGET}
@@ -31,3 +33,5 @@ option(VERBOSE_BUILD "Have a verbose build process")
 if(VERBOSE_BUILD)
     set(CMAKE_VERBOSE_MAKEFILE ON)
 endif()
+
+

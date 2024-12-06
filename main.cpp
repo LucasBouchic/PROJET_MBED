@@ -1,7 +1,10 @@
 #include "mbed.h"
-#include "HTU21DF.h"
-#include "AS6212.h"
-#include "PressureSensor.h"
+//#include "HTU21DF.h"
+//#include "AS6212.h"
+//#include "PressureSensor.h"
+#include "capteurs/inc/HTU21DF.h"
+#include "capteurs/inc/AS6212.h"
+#include "capteurs/inc/PressureSensor.h"
 
 #include <stdio.h>
 
@@ -265,7 +268,7 @@ int main(void)
 
         // float pressure = pressureSensor.readPressure();
 
-        printf("HTU21DF Temperature = %d.%02d C\n", temp_int / 100, temp_int % 100);
+        //printf("HTU21DF Temperature = %d.%02d C\n", temp_int / 100, temp_int % 100);
         //printf("Humidity = %d.%02d %%\n", hum_int_htu21df / 100, hum_int_htu21df % 100);
         //printf("AS6212 Temperature = %d.%02d C\n", temp_int_AS6212 / 100, temp_int_AS6212 % 100);
 

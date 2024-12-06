@@ -14,12 +14,8 @@ Ce projet implémente un système embarqué pour mesurer la température et l'hu
 ## Matériel Requis
 
 1. **Carte Zest Core FMLR-72**  
-2. **Capteur HTU21DF** (température et humidité).  
-3. **Capteur AS6212** (température).  
-4. **Module LoRaWAN intégré**.  
-5. **Câble USB** pour programmer la carte.  
-6. Un ordinateur avec **Mbed CLI** et **Git** installés.  
-7. Outil de monitoring série comme **Minicom** ou **Tera Term**.  
+2. **Zest_Sensor_P-T-RH** 
+3. **Environnement mbed**
 
 ---
 

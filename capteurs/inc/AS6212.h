@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 
 #include "SensorI2C.h"
 #include <stdio.h>
@@ -16,4 +16,15 @@ public:
         uint16_t raw_temp = (data[0] << 8) | data[1];
         return raw_temp / 128.0;
     }
+};*/
+
+
+#pragma once
+
+#include "SensorI2C.h"
+
+class AS6212 : public SensorI2C {
+public:
+    AS6212(I2C &i2c);
+    float readTemperature();
 };

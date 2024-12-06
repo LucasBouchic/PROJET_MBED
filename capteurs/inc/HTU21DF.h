@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include "SensorI2C.h"
 
 class HTU21DF : public SensorI2C {
@@ -24,4 +24,15 @@ public:
         uint16_t raw_hum = (data[0] << 8) | data[1];
         return -6.0 + (125.0 * raw_hum / 65536.0);
     }
+};*/
+
+#pragma once
+
+#include "SensorI2C.h"
+
+class HTU21DF : public SensorI2C {
+public:
+    HTU21DF(I2C &i2c);
+    float readTemperature();
+    float readHumidity();
 };
