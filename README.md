@@ -51,9 +51,9 @@ Avant de commencer, vous devez avoir les éléments suivants installés :
 ### Étape 1 : Cloner le repository depuis GitHub
 Commencez par cloner le dépôt Git contenant le projet en utilisant la commande suivante dans votre terminal :
 
-```bash
+``` bash
    git clone https://github.com/LucasBouchic/PROJET_MBED.git
-
+```
 Cela téléchargera tous les fichiers nécessaires pour le projet dans un répertoire local sur votre machine.
 
 ### Étape 2 : Installer les librairies nécessaires
@@ -63,7 +63,7 @@ Ensuite, naviguez dans le répertoire du projet cloné et utilisez la commande m
 ```bash
 cd PROJET_MBED
 mbed os
-
+```
 Cela téléchargera et installera automatiquement toutes les librairies requises pour le bon fonctionnement du projet.
 
 ### Étape 3 : Configurer la cible Mbed
@@ -72,12 +72,12 @@ Vous devez spécifier la cible matérielle sur laquelle vous allez exécuter le 
 
 ```bash
 mbed target ZEST_CORE_CORE_FMLR-72
-
+```
 ### Étape 4 : Configurer le toolchain
 Assurez-vous que le compilateur GCC_ARM est sélectionné en tant que toolchain pour la compilation. Exécutez la commande suivante :
 ```bash
 mbed toolchain GCC_ARM
-
+```
 Cela configure Mbed CLI pour utiliser la toolchain GCC_ARM pour la compilation du projet.
 
 ### Étape 5 : Configurer le projet
@@ -85,6 +85,7 @@ Avant de compiler le projet, vous devez configurer certains paramètres de votre
 
 ```bash
 mbed config root .
+```
 
 Cette commande configure les paramètres du projet et prépare votre environnement de travail.
 
@@ -93,14 +94,14 @@ Maintenant, vous pouvez compiler le projet en utilisant la commande suivante :
 
 ```bash
 mbed compile
-
+```
 Cela va compiler le code source pour générer un fichier binaire qui peut être flashé sur la carte Sixtron6.
 
 ### Étape 7 : Flasher la carte Sixtron6
 Une fois la compilation terminée, il est temps de flasher le programme sur la carte Sixtron6. Utilisez la commande suivante :
 ```bash 
 sixtron flash
-
+```
 Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le programme sera exécuté immédiatement après le flashage.
 
 
@@ -113,6 +114,7 @@ Les données envoyées au réseau LoRaWAN suivent ce format :
     "humidity": 40.2,
     "as6212_temperature": 22.3
 }
+```
 
 
 
