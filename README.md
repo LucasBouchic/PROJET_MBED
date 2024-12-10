@@ -115,7 +115,11 @@ Les données envoyées au réseau LoRaWAN suivent ce format :
     "as6212_temperature": 22.3
 }
 ```
+## Architecture du Projet
 
+Voici l'architecture du projet :
+
+![Architecture du Projet](./Architecture.png)
 
 
 
