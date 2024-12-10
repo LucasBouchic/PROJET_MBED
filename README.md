@@ -122,7 +122,13 @@ Afin de rendre le projet lisible, nous avons décidé de faire une architecture 
 
 ### Exemple d'architecture 
 
-![Architecture du Projet](resources/Architecture.png)
+<div align="center">
+    ![Architecture du Projet](resources/Architecture.png)
+    <em>Figure : Architecture du Projet.</em>
+</div>
+
+
+
 
 Nous avons créé dans notre projet un dossier capteurs qui comporte un `src` et un `inc` qui contiennet les `.h` et les `.cpp` des différents capteurs ainsi que le `.h` de notre protocole de communication avec nos capteurs (I2C). 
 
