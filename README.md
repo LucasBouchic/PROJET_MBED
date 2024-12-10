@@ -131,12 +131,12 @@ Nous avons créé dans notre projet un dossier capteurs qui comporte un `src` et
 Dans un premier temps, il faut inclure correctement les `.h`, il faut bien indiquer où se trouve les différents fichier : 
 
 
-```json
-{
+```bash
+
 #include "capteurs/inc/HTU21DF.h"
 #include "capteurs/inc/AS6212.h"
 #include "capteurs/inc/PressureSensor.h"
-}
+
 ```
 
 
