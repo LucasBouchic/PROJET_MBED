@@ -118,7 +118,7 @@ Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le
 
 ## Architecture du Projet
 
-Afin de rendre le projet lisible, nous avons décidé de faire une architecture comme si-dessous (dans notre project, il n'y pas le capteur de pression car sur notre carte, le capteur semblait défectueux).
+Afin de rendre le projet lisible, nous avons décidé de faire une architecture comme ci-dessous (dans notre project, il n'y pas le capteur de pression car sur notre carte, le capteur semblait défectueux).
 
 ### Exemple d'architecture 
 
@@ -129,11 +129,11 @@ Afin de rendre le projet lisible, nous avons décidé de faire une architecture 
     <em>Figure : rchitecture du Projet.</em>
 </p>
 
-Nous avons créé dans notre projet un dossier capteurs qui comporte un `src` et un `inc` qui contiennet les `.h` et les `.cpp` des différents capteurs ainsi que le `.h` de notre protocole de communication avec nos capteurs (I2C). 
+Nous avons créé dans notre projet un dossier `capteurs` qui comporte un `src` et un `inc` qui contiennet les `.h` et les `.cpp` des différents capteurs ainsi que le `.h` de notre protocole de communication avec nos capteurs (I2C). 
 
 ### Les modifications nécessaire dans le project 
 
-Dans un premier temps, il faut inclure correctement les `.h`, il faut bien indiquer où se trouve les différents fichier : 
+Dans un premier temps, il faut inclure correctement les `.h`, il faut bien indiquer où se trouvent les différents fichiers : 
 
 
 ```cpp
@@ -143,7 +143,7 @@ Dans un premier temps, il faut inclure correctement les `.h`, il faut bien indiq
 #include "capteurs/inc/PressureSensor.h"
 
 ```
-Ensuite, les différents `.cpp` ne sont plus situés à la racine du projet, ils sont dans un dossier du projet. Le CmakeLists, lui, est à la racine et compile projet à la racine. Il est donc necessaire de lui indiquer d'aller compiler tout les `.cpp` des différents capteurs. Nous devons modifier la partie `targer_SOURCE` du CmakeLists : 
+Ensuite, les différents `.cpp` ne sont plus situés à la racine du projet, ils sont dans un dossier du projet. Le CmakeLists, lui, est à la racine et compile le projet à la racine. Il est donc necessaire de lui indiquer d'aller compiler tout les `.cpp` des différents capteurs dans notre dossier `capteurs`. Nous devons modifier la partie `targer_SOURCE` du CmakeLists : 
 
 ```txt
 target_sources(${APP_TARGET}
@@ -198,8 +198,8 @@ https://thingsboard.cloud/home
 </div>
 </p>
 <p align="justify">
-Le tableau de bord se découper en deux partie (gauche => température et droite => humidité), nous pouvons voir dans un premier temps deux widget de température en haut à gauche. Ces deux températures correspondent au retour de température du capteur AS6212 et HTU21DF. En dessous de ces deux widgets, nous avons un grafique en temps réel des deux températeurs mesurées par les capteurs, cela permet de visualiser sur un pédiode de temps donnée l'évolution des températures au cours du temps. 
+Le tableau de bord se découpe en deux parties (gauche => température et droite => humidité). Nous pouvons voir dans un premier temps deux widgets de température en haut à gauche. Ces deux températures correspondent au retour de température du capteur AS6212 et HTU21DF. En dessous de ces deux widgets, nous avons un graphique en temps réel des deux températeurs mesurées par les capteurs, cela permet de visualiser sur un pédiode de temps donnée, l'évolution des températures au cours du temps. 
 </p>
 <p align="justify">
-Sur la droite du tableau de bord, nous avons un widget qui correspond à l'humidité mesurer par le capteur. Nous avons fait en sorte que plus l'humidité est importante, plus la couleur de l'écriture devient forcé ( 0% d'humidité => bleu ciel, 100% d'humidité => bleu forcé). En dessous du widgets, nous avons un grafique en temps réel de l'humidité mesurée par le capteur, cela permet de visualiser sur un pédiode de temps donnée l'évolution de l'humidité au cours du temps. 
+Sur la droite du tableau de bord, nous avons un widget qui correspond à l'humidité mesurée par le capteur. Nous avons fait en sorte que plus l'humidité est importante, plus la couleur de l'écriture devient forcée ( 0% d'humidité => bleu ciel, 100% d'humidité => bleu forcé). En dessous du widget, nous avons un graphique en temps réel de l'humidité mesurée par le capteur, cela permet de visualiser sur un pédiode de temps donnée l'évolution de l'humidité au cours du temps. 
 </p>
