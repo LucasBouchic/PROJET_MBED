@@ -47,18 +47,18 @@ Les données envoyées au réseau LoRaWAN suivent ce format :
 }
 ```
 ---
-## Récupération, Installation et Exécution du Programme
+### Récupération, Installation et Exécution du Programme
 
 Suivez ces étapes pour récupérer et installer le programme sur votre environnement de travail. Assurez-vous de bien suivre chaque étape dans le terminal.
 
-### Prérequis
+## Prérequis
 Avant de commencer, vous devez avoir les éléments suivants installés :
 - **Git** : Pour cloner le repository.
 - **Mbed CLI** : Pour gérer le projet Mbed et compiler le code.
 - **GCC_ARM Toolchain** : Utilisé pour compiler le programme.
 - **Carte Sixtron6** et **ZEST_CORE_FMLR-72** : Matériel nécessaire pour le projet.
 
-### Étape 1 : Cloner le repository depuis GitHub
+## Étape 1 : Cloner le repository depuis GitHub
 Commencez par cloner le dépôt Git contenant le projet en utilisant la commande suivante dans votre terminal :
 
 ``` bash
@@ -66,7 +66,7 @@ Commencez par cloner le dépôt Git contenant le projet en utilisant la commande
 ```
 Cela téléchargera tous les fichiers nécessaires pour le projet dans un répertoire local sur votre machine.
 
-### Étape 2 : Installer les librairies nécessaires
+## Étape 2 : Installer les librairies nécessaires
 
 Ensuite, naviguez dans le répertoire du projet cloné et utilisez la commande mbed os pour installer toutes les librairies et dépendances nécessaires au projet :
 
@@ -76,21 +76,21 @@ mbed os
 ```
 Cela téléchargera et installera automatiquement toutes les librairies requises pour le bon fonctionnement du projet.
 
-### Étape 3 : Configurer la cible Mbed
+## Étape 3 : Configurer la cible Mbed
 
 Vous devez spécifier la cible matérielle sur laquelle vous allez exécuter le programme. Dans ce cas, la cible est ZEST_CORE_CORE_FMLR-72. Utilisez la commande suivante :
 
 ```bash
 mbed target ZEST_CORE_CORE_FMLR-72
 ```
-### Étape 4 : Configurer le toolchain
+## Étape 4 : Configurer le toolchain
 Assurez-vous que le compilateur GCC_ARM est sélectionné en tant que toolchain pour la compilation. Exécutez la commande suivante :
 ```bash
 mbed toolchain GCC_ARM
 ```
 Cela configure Mbed CLI pour utiliser la toolchain GCC_ARM pour la compilation du projet.
 
-### Étape 5 : Configurer le projet
+## Étape 5 : Configurer le projet
 Avant de compiler le projet, vous devez configurer certains paramètres de votre projet en exécutant la commande suivante dans le répertoire racine du projet :
 
 ```bash
@@ -99,7 +99,7 @@ mbed config root .
 
 Cette commande configure les paramètres du projet et prépare votre environnement de travail.
 
-### Étape 6 : Compiler le projet
+## Étape 6 : Compiler le projet
 Maintenant, vous pouvez compiler le projet en utilisant la commande suivante :
 
 ```bash
@@ -115,13 +115,20 @@ sixtron flash
 Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le programme sera exécuté immédiatement après le flashage.
 
 
-## Architecture du Projet
+### Architecture du Projet
 
-Voici l'architecture du projet :
+Afin de rendre le projet lisible, nous avons décidé de faire une architecture comme si-dessous (dans notre project, il n'y pas le capteur de pression car sur notre carte, le capteur semblait défectueux).
+
+## Exemple d'architecture 
 
 ![Architecture du Projet](resources/Architecture.png)
 
-## Rôle important de `snprintf` et choix de `tx_buffer`
+Nous avons créé dans notre projet un dossier capteurs qui comporte un `src` et un `inc` qui contiennet les `.h` et les `.cpp` des différents capteurs ainsi que le `.h` de notre protocole de communication avec nos capteurs (I2C). 
+
+## Les modifications nécessaire dans le project 
+
+
+### Rôle important de `snprintf` et choix de `tx_buffer`
 
 Nous avons décidé de ne pas utiliser la variable payload pour transmettre les données, car elle est définie comme une chaîne statique fixe.
 Nous avons préféré choisir d'utiliser `snprintf` pour remplir dynamiquement le tableau `tx_buffer` avec les données mesurées par les capteurs, car cette approche permet de :
