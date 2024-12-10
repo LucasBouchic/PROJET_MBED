@@ -121,5 +121,13 @@ Voici l'architecture du projet :
 
 ![Architecture du Projet](resources/Architecture.png)
 
+## Rôle important de `snprintf` et choix de `tx_buffer`
+
+Nous avons décidé de ne pas utiliser la variable payload pour transmettre les données, car elle est définie comme une chaîne statique fixe.
+Nous avons préféré choisir d'utiliser `snprintf` pour remplir dynamiquement le tableau `tx_buffer` avec les données mesurées par les capteurs, car cette approche permet de :
+
+- **Gérer dynamiquement les données** : `snprintf` formate une chaîne de caractères en insérant les valeurs mesurées directement dans le tableau `tx_buffer`.
+- **Optimisation de la mémoire** : Plutôt que d'utiliser une variable intermédiaire (`payload`), `snprintf` écrit directement dans le buffer de transmission (`tx_buffer`), évitant ainsi la duplication inutile des données.
+- **Prévention des débordements** : `snprintf` limite automatiquement la taille de la chaîne formatée pour s'assurer qu'elle ne dépasse pas la taille allouée au tableau `tx_buffer`. Cela réduit le risque de débordement de mémoire, qui peut entraîner des comportements imprévisibles.
 
 
