@@ -114,6 +114,7 @@ sixtron flash
 ```
 Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le programme sera exécuté immédiatement après le flashage.
 
+---
 
 ### Architecture du Projet
 
