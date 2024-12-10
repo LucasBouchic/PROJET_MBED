@@ -138,6 +138,16 @@ Dans un premier temps, il faut inclure correctement les `.h`, il faut bien indiq
 #include "capteurs/inc/PressureSensor.h"
 
 ```
+Ensuite, les différents `.cpp` ne sont plus situés à la racine du projet, ils sont dans un dossier du projet. Le CmakeLists, lui, est à la racine et compile projet à la racine. Il est donc necessaire de lui indiquer d'aller compiler tout les `.cpp` des différents capteurs. Nous devons modifier la partie `targer_SOURCE` du Cmakev : 
+
+```txt
+target_sources(${APP_TARGET}
+    PRIVATE
+        main.cpp
+        capteurs/src/HTU21DF.cpp
+        capteurs/src/AS6212.cpp
+)
+```
 
 
 
