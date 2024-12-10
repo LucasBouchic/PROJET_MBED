@@ -187,7 +187,7 @@ https://thingsboard.cloud/home
 ### Notre tableau de bord (Groupe 7)
 
 ![Capture d'écran de notre thingboard en fonctionnement](resources/thingboard.png)
-
+*Figure : Capture d'écran de notre Thingboard en fonctionnement.*
 
 
 
