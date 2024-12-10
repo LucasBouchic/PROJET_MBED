@@ -121,9 +121,8 @@ Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le
 Afin de rendre le projet lisible, nous avons décidé de faire une architecture comme si-dessous (dans notre project, il n'y pas le capteur de pression car sur notre carte, le capteur semblait défectueux).
 
 ### Exemple d'architecture 
-
+![Architecture du Projet](resources/Architecture.png)
 <div align="center">
-    ![Architecture du Projet](resources/Architecture.png)
     <em>Figure : Architecture du Projet.</em>
 </div>
 
