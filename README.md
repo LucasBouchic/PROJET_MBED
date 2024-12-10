@@ -149,9 +149,9 @@ target_sources(${APP_TARGET}
 )
 ```
 
+---
 
-
-### Rôle important de `snprintf` et choix de `tx_buffer`
+## Rôle important de `snprintf` et choix de `tx_buffer`
 
 Nous avons décidé de ne pas utiliser la variable payload pour transmettre les données, car elle est définie comme une chaîne statique fixe.
 Nous avons préféré choisir d'utiliser `snprintf` pour remplir dynamiquement le tableau `tx_buffer` avec les données mesurées par les capteurs, car cette approche permet de :
