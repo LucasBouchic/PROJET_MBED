@@ -36,6 +36,16 @@ Ce projet implémente un système embarqué pour mesurer la température et l'hu
 4. **Debug**  
    - Messages en temps réel affichés sur un terminal série.  
 
+## Payload Transmis
+
+Les données envoyées au réseau LoRaWAN suivent ce format :  
+```json
+{
+    "temperature": 22.5,
+    "humidity": 40.2,
+    "as6212_temperature": 22.3
+}
+```
 ---
 ## Récupération, Installation et Exécution du Programme
 
@@ -105,16 +115,6 @@ sixtron flash
 Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le programme sera exécuté immédiatement après le flashage.
 
 
-## Payload Transmis
-
-Les données envoyées au réseau LoRaWAN suivent ce format :  
-```json
-{
-    "temperature": 22.5,
-    "humidity": 40.2,
-    "as6212_temperature": 22.3
-}
-```
 ## Architecture du Projet
 
 Voici l'architecture du projet :
