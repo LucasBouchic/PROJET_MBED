@@ -119,8 +119,7 @@ Les données envoyées au réseau LoRaWAN suivent ce format :
 
 Voici l'architecture du projet :
 
-![Architecture du Projet](./ressources/Architecture.png)
-
+![Architecture du Projet](resources/Architecture.png)
 
 
 
