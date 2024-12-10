@@ -160,4 +160,34 @@ Nous avons préféré choisir d'utiliser `snprintf` pour remplir dynamiquement l
 - **Optimisation de la mémoire** : Plutôt que d'utiliser une variable intermédiaire (`payload`), `snprintf` écrit directement dans le buffer de transmission (`tx_buffer`), évitant ainsi la duplication inutile des données.
 - **Prévention des débordements** : `snprintf` limite automatiquement la taille de la chaîne formatée pour s'assurer qu'elle ne dépasse pas la taille allouée au tableau `tx_buffer`. Cela réduit le risque de débordement de mémoire, qui peut entraîner des comportements imprévisibles.
 
+--- 
+
+## Thingsboard
+
+### Présentation 
+
+**ThingsBoard** est une plateforme IoT open-source permettant de collecter, traiter, visualiser et gérer des données provenant de divers dispositifs connectés. 
+
+Elle offre des outils pour :
+
+- **Visualisation des données** : Créez des tableaux de bord interactifs pour afficher les données en temps réel ou historiques sous forme de graphiques, jauges ou tableaux.
+- **Gestion des dispositifs** : Suivez et configurez vos appareils IoT à distance.
+- **Automatisation** : Configurez des alertes, des règles et des actions automatiques en fonction des données reçues.
+
+Dans ce projet, ThingsBoard est utilisé pour :
+
+- Collecter les données des capteurs (température et humidité) transmises via LoRaWAN.
+- Visualiser ces données sur une interface utilisateur.
+  
+voici le lien pour accéder à la page d'accueil : 
+```txt
+https://thingsboard.cloud/home
+```
+
+### Notre tableau de bord (Groupe 7)
+
+![Capture d'écran de notre thingboard en fonctionnement](resources/Architecture.png)
+
+
+
 
