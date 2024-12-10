@@ -197,8 +197,8 @@ https://thingsboard.cloud/home
     <em>Figure : Capture d'écran de notre Thingboard en fonctionnement.</em>
 </div>
 </p>
-
+<p align="justify">
 Le tableau de bord se découper en deux partie (gauche => température et droite => humidité), nous pouvons voir dans un premier temps deux widget de température en haut à gauche. Ces deux températures correspondent au retour de température du capteur AS6212 et HTU21DF. En dessous de ces deux widgets, nous avons un grafique en temps réel des deux températeurs mesurées par les capteurs, cela permet de visualiser sur un pédiode de temps donnée l'évolution des températures au cours du temps. 
 
 Sur la droite du tableau de bord, nous avons un widget qui correspond à l'humidité mesurer par le capteur. Nous avons fait en sorte que plus l'humidité est importante, plus la couleur de l'écriture devient forcé ( 0% d'humidité => bleu ciel, 100% d'humidité => bleu forcé). En dessous du widgets, nous avons un grafique en temps réel de l'humidité mesurée par le capteur, cela permet de visualiser sur un pédiode de temps donnée l'évolution de l'humidité au cours du temps. 
-
+</p>
