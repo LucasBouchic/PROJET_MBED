@@ -121,17 +121,11 @@ Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le
 Afin de rendre le projet lisible, nous avons décidé de faire une architecture comme si-dessous (dans notre project, il n'y pas le capteur de pression car sur notre carte, le capteur semblait défectueux).
 
 ### Exemple d'architecture 
+
 <div align="center">
     <img src="resources/Architecture.png" alt="Architecture du Projet" />
     <em>Figure : rchitecture du Projet.</em>
 </div>
-
-
-      ![Architecture du Projet](resources/Architecture.png)
-
-
-
-
 
 Nous avons créé dans notre projet un dossier capteurs qui comporte un `src` et un `inc` qui contiennet les `.h` et les `.cpp` des différents capteurs ainsi que le `.h` de notre protocole de communication avec nos capteurs (I2C). 
 
