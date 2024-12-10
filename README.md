@@ -49,7 +49,7 @@ Les données envoyées au réseau LoRaWAN suivent ce format :
 ---
 ## Récupération, Installation et Exécution du Programme
 
-Suivez ces étapes pour récupérer et installer le programme sur votre environnement de travail. Assurez-vous de bien suivre chaque étape dans le terminal.
+Suivez ces étapes pour récupérer et installer le programme sur votre environnement de travail. Assurez-vous de bien suivre chaque étape dans le terminal. ( si vous avez besoin de plus d'explication ou rencontrer des problèmes, allez voire le cours numéro 1 du projet)
 
 ### Prérequis
 Avant de commencer, vous devez avoir les éléments suivants installés :
