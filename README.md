@@ -204,89 +204,111 @@ Le tableau de bord se découpe en deux parties (gauche => température et droite
 Sur la droite du tableau de bord, nous avons un widget qui correspond à l'humidité mesurée par le capteur. Nous avons fait en sorte que plus l'humidité est importante, plus la couleur de l'écriture devient forcée ( 0% d'humidité => bleu ciel, 100% d'humidité => bleu forcé). En dessous du widget, nous avons un graphique en temps réel de l'humidité mesurée par le capteur, cela permet de visualiser sur un pédiode de temps donnée l'évolution de l'humidité au cours du temps. 
 </p>
 
-
 ---
 
-# EXERCICE 1 : Contrôle d'une LED avec une interruption sur bouton
+# EXERCICE 1 : Contrôle d'une LED avec un compteur basé sur une interruption
 
-Cet exercice utilise la bibliothèque **Mbed OS** pour contrôler une LED en réponse à l'interaction avec un bouton poussoir. Le code repose sur des interruptions pour basculer l'état de la LED à chaque activation ou désactivation du bouton.
-
----
-
-## Fonctionnement
-
-1. **Initialisation :**
-   - Configuration d'un bouton en entrée avec gestion d'interruptions (`InterruptIn`).
-   - Définition d'une LED comme sortie numérique (`DigitalOut`).
-
-2. **Gestion des interruptions :**
-   - Une fonction `led_on_off` est déclenchée par des interruptions (montée et descente) pour inverser l'état de la LED.
-
-3. **Boucle principale :**
-   - Une boucle infinie maintient l'exécution du programme.
-   - Un délai de 250 ms est appliqué pour limiter l'utilisation des ressources, bien que cette boucle n'interagisse pas directement avec les composants.
-
----
-
-# EXERCICE 2 : Mesure de la durée d'appui sur un bouton et contrôle d'une LED
-
-Dans cet exercice, **Mbed OS** est utilisé pour mesurer le temps d'appui sur un bouton, afficher la durée dans la console et modifier l'état d'une LED en début et fin d'appui.
-
----
-
-## Fonctionnement
-
-1. **Gestion des interruptions :**
-   - L'appui sur le bouton déclenche `led_on`, démarre un minuteur et change l'état de la LED.
-   - Le relâchement déclenche `led_off`, arrête le minuteur et enregistre la durée d'appui.
-
-2. **Boucle principale :**
-   - La durée enregistrée est affichée dans la console à l'aide de `printf`.
-
-3. **Affichage des données :**
-   - La durée d'appui, en millisecondes, est imprimée dès qu'elle est prête.
-
----
-
-# EXERCICE 3 : Modification de la fréquence de clignotement d'une LED
-
-Ce programme utilise un **Ticker** avec **Mbed OS** pour ajuster dynamiquement la fréquence de clignotement d'une LED via un bouton poussoir.
+Cet exercice configure une LED pour alterner son état selon un compteur, qui est ajusté via des interruptions déclenchées par un bouton. La LED clignote avec une fréquence variable.
 
 ---
 
 ## Fonctionnement
 
 1. **Initialisation :**
-   - Un bouton géré par interruptions (`InterruptIn`), une LED (`DigitalOut`) et un **Ticker** sont configurés.
+   - Une LED (`DigitalOut led`) et un bouton (`InterruptIn bt`) sont configurés.
+   - Un objet `Ticker` (`led_freq`) gère la fréquence de clignotement.
 
-2. **Gestion des interruptions :**
-   - Une fonction `ChangeFreq` modifie la fréquence d'appel du **Ticker** à chaque appui sur le bouton.
+2. **Clignotement de la LED :**
+   - La fonction `flip` est appelée périodiquement par le `Ticker`.
+   - Elle gère l'état de la LED en fonction d'un compteur (`compteur`), alternant entre ON et OFF.
 
-3. **Clignotement :**
-   - La fonction `led_on` est périodiquement appelée par le **Ticker** pour alterner l'état de la LED.
+3. **Changement de fréquence :**
+   - L'interruption déclenche la fonction `change_max_count` pour ajuster la valeur maximale du compteur (`max_compteur`), modifiant ainsi la fréquence de clignotement.
 
 4. **Boucle principale :**
-   - Maintient le programme actif avec une temporisation de 100 ms.
+   - Une boucle infinie garde le programme actif avec une temporisation de 1 seconde.
 
 ---
 
-# EXERCICE 6 : Synchronisation de threads avec Mutex et contrôle de LED
+# EXERCICE 2 : Comportement simple LED et bouton
 
-Dans cet exercice, **Mbed OS** est utilisé pour synchroniser plusieurs threads avec un **mutex**. Deux threads affichent des messages en console ("Ping" et "Pong"), tandis que le thread principal clignote une LED et signale son activité.
+Cet exercice utilise un bouton pour contrôler directement l'état d'une LED. La LED s'allume uniquement lorsqu'un appui est détecté.
 
 ---
 
 ## Fonctionnement
 
-1. **Threads :**
-   - Le thread "Ping" affiche "Ping" et verrouille le **mutex**.
-   - Le thread "Pong" affiche "Pong" en utilisant également le **mutex**.
-   - Le thread principal clignote une LED toutes les 5 secondes et affiche "Alive!" en respectant le verrouillage.
+1. **Initialisation :**
+   - Une LED (`DigitalOut led`) et un bouton (`DigitalInOut bt`) sont configurés.
 
-2. **Synchronisation :**
-   - Le **mutex** garantit que les messages console ne se chevauchent pas.
+2. **Interaction LED/Bouton :**
+   - Dans la boucle principale, la LED suit l'état du bouton en temps réel (`led = bt.read()`).
 
-3. **Clignotement de la LED :**
-   - La LED principale clignote dans la boucle principale, indiquant l'exécution du programme.
+3. **Temporisation :**
+   - Un délai fixe (`500 ms`) est utilisé pour limiter les ressources consommées.
+
+---
+
+# EXERCICE 3 : Lecture et affichage des données de capteurs (I2C)
+
+Cet exercice met en œuvre une communication I2C pour lire des données de capteurs tels que température, humidité et pression, et les afficher dans la console.
+
+---
+
+## Fonctionnement
+
+1. **Lecture de la température :**
+   - Le capteur HTU21DF fournit une température brute convertie avec la formule :  
+     `temp = -46.85 + (175.72 * raw_temp / 65536.0)`.
+
+2. **Lecture de l'humidité :**
+   - Le même capteur mesure l'humidité brute, convertie par :  
+     `humidity = -6.0 + (125.0 * raw_hum / 65536.0)`.
+
+3. **Lecture de la température (capteur AS6212) :**
+   - Une autre température est mesurée avec une précision améliorée via :  
+     `temp_AS6212 = raw_temp_AS6212 / 128.0`.
+
+4. **Lecture de la pression :**
+   - Un capteur annexe fournit la pression via :  
+     `pressure = raw_pressure / 256.0`.
+
+5. **Affichage :**
+   - Toutes les valeurs sont affichées dans la console avec un formatage précis.
+
+6. **Boucle principale :**
+   - Les lectures sont réalisées toutes les 500 ms, garantissant un flux régulier d'informations.
+
+---
+
+# EXERCICE 4 : Synchronisation de threads avec Mutex et contrôle de LED
+
+Cet exercice illustre l'utilisation des **mutex** pour gérer des threads simultanés et éviter les conflits lors de l'accès aux ressources partagées, comme l'affichage dans la console. Deux threads ("Ping" et "Pong") affichent leurs messages, tandis que le thread principal clignote une LED et affiche "Alive".
+
+---
+
+## Fonctionnement
+
+1. **Initialisation :**
+   - Un **Mutex** (`printf_mutex`) est utilisé pour synchroniser l'accès à la console.
+   - Deux threads (`ping_thread` et `pong_thread`) sont créés pour exécuter les fonctions `ping` et `pong`.
+
+2. **Gestion des threads :**
+   - Les threads `ping` et `pong` exécutent respectivement 100 itérations pour afficher "Ping" et "Pong".
+   - Avant chaque affichage, les threads acquièrent le mutex (`printf_mutex.lock()`), garantissant que les messages ne se chevauchent pas.
+
+3. **Thread principal :**
+   - Le thread principal clignote une LED et affiche "Alive" toutes les 2 secondes, indiquant que le programme est actif.
+
+4. **Synchronisation via Mutex :**
+   - Les threads verrouillent le mutex avant d'accéder à la console et le libèrent après avoir affiché leurs messages.
+   - Cela garantit que les messages "Ping", "Pong", et "Alive" sont affichés de manière ordonnée.
+
+---
+
+## Boucle principale
+
+- Le thread principal fonctionne indépendamment des threads `ping` et `pong`.
+- La LED principale clignote à un intervalle de 2 secondes, offrant une indication visuelle de l'état du programme.
 
 ---
