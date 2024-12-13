@@ -203,3 +203,90 @@ Le tableau de bord se découpe en deux parties (gauche => température et droite
 <p align="justify">
 Sur la droite du tableau de bord, nous avons un widget qui correspond à l'humidité mesurée par le capteur. Nous avons fait en sorte que plus l'humidité est importante, plus la couleur de l'écriture devient forcée ( 0% d'humidité => bleu ciel, 100% d'humidité => bleu forcé). En dessous du widget, nous avons un graphique en temps réel de l'humidité mesurée par le capteur, cela permet de visualiser sur un pédiode de temps donnée l'évolution de l'humidité au cours du temps. 
 </p>
+
+
+---
+
+# EXERCICE 1 : Contrôle d'une LED avec une interruption sur bouton
+
+Cet exercice utilise la bibliothèque **Mbed OS** pour contrôler une LED en réponse à l'interaction avec un bouton poussoir. Le code repose sur des interruptions pour basculer l'état de la LED à chaque activation ou désactivation du bouton.
+
+---
+
+## Fonctionnement
+
+1. **Initialisation :**
+   - Configuration d'un bouton en entrée avec gestion d'interruptions (`InterruptIn`).
+   - Définition d'une LED comme sortie numérique (`DigitalOut`).
+
+2. **Gestion des interruptions :**
+   - Une fonction `led_on_off` est déclenchée par des interruptions (montée et descente) pour inverser l'état de la LED.
+
+3. **Boucle principale :**
+   - Une boucle infinie maintient l'exécution du programme.
+   - Un délai de 250 ms est appliqué pour limiter l'utilisation des ressources, bien que cette boucle n'interagisse pas directement avec les composants.
+
+---
+
+# EXERCICE 2 : Mesure de la durée d'appui sur un bouton et contrôle d'une LED
+
+Dans cet exercice, **Mbed OS** est utilisé pour mesurer le temps d'appui sur un bouton, afficher la durée dans la console et modifier l'état d'une LED en début et fin d'appui.
+
+---
+
+## Fonctionnement
+
+1. **Gestion des interruptions :**
+   - L'appui sur le bouton déclenche `led_on`, démarre un minuteur et change l'état de la LED.
+   - Le relâchement déclenche `led_off`, arrête le minuteur et enregistre la durée d'appui.
+
+2. **Boucle principale :**
+   - La durée enregistrée est affichée dans la console à l'aide de `printf`.
+
+3. **Affichage des données :**
+   - La durée d'appui, en millisecondes, est imprimée dès qu'elle est prête.
+
+---
+
+# EXERCICE 3 : Modification de la fréquence de clignotement d'une LED
+
+Ce programme utilise un **Ticker** avec **Mbed OS** pour ajuster dynamiquement la fréquence de clignotement d'une LED via un bouton poussoir.
+
+---
+
+## Fonctionnement
+
+1. **Initialisation :**
+   - Un bouton géré par interruptions (`InterruptIn`), une LED (`DigitalOut`) et un **Ticker** sont configurés.
+
+2. **Gestion des interruptions :**
+   - Une fonction `ChangeFreq` modifie la fréquence d'appel du **Ticker** à chaque appui sur le bouton.
+
+3. **Clignotement :**
+   - La fonction `led_on` est périodiquement appelée par le **Ticker** pour alterner l'état de la LED.
+
+4. **Boucle principale :**
+   - Maintient le programme actif avec une temporisation de 100 ms.
+
+---
+
+# EXERCICE 6 : Synchronisation de threads avec Mutex et contrôle de LED
+
+Dans cet exercice, **Mbed OS** est utilisé pour synchroniser plusieurs threads avec un **mutex**. Deux threads affichent des messages en console ("Ping" et "Pong"), tandis que le thread principal clignote une LED et signale son activité.
+
+---
+
+## Fonctionnement
+
+1. **Threads :**
+   - Le thread "Ping" affiche "Ping" et verrouille le **mutex**.
+   - Le thread "Pong" affiche "Pong" en utilisant également le **mutex**.
+   - Le thread principal clignote une LED toutes les 5 secondes et affiche "Alive!" en respectant le verrouillage.
+
+2. **Synchronisation :**
+   - Le **mutex** garantit que les messages console ne se chevauchent pas.
+
+3. **Clignotement de la LED :**
+   - La LED principale clignote dans la boucle principale, indiquant l'exécution du programme.
+
+---
