@@ -110,7 +110,7 @@ Cela va compiler le code source pour générer un fichier binaire qui peut être
 ### Étape 7 : Flasher la carte Sixtron6
 Une fois la compilation terminée, il est temps de flasher le programme sur la carte Sixtron6. Utilisez la commande suivante :
 ```bash 
-sixtron flash
+sixtron_flash
 ```
 Cela va transférer le fichier binaire généré sur votre carte Sixtron6, et le programme sera exécuté immédiatement après le flashage.
 
